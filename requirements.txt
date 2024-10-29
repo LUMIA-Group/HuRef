@@ -1,0 +1,6 @@
+numpy==1.23.4
+transformers==4.30.2
+datasets==2.10.1 
+pandas==2.0.2 
+tqdm==4.64.1 
+tqdm-multiprocess==0.0.11 
