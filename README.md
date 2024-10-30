@@ -29,7 +29,7 @@ pip install -r requirements.txt
 </p>
 
 ### Prepare Sorted Vocabulary Tokens List:
-To extract invariant terms from an LLM, we need a frequency-sorted token list. You can either download our pre-sorted token list or generate your own by running `sort_tokens_frequency.py`.
+To extract invariant terms from an LLM, we need a frequency-sorted token list. You can either use our pre-sorted token list or generate your own by running `sort_tokens_frequency.py`.
 
 ### Prepare the Encoder:
 The encoder maps the invariant terms to a Gaussian feature vector. You can download our trained encoder from [this link](https://drive.google.com/file/d/1FirePAdWdDJK74sXvYxn3vVwISzvjby-/view?usp=sharing), or you can train the encoder from scratch by running `encoder_train.py` with the default settings.
