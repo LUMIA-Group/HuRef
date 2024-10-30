@@ -322,7 +322,7 @@ if __name__ == "__main__":
     seed = 100
 
     # Load the model
-    model = AutoModelForCausalLM.from_pretrained(model_path,cache_dir = huggingface_cache_dir,local_files_only=True)
+    model = AutoModelForCausalLM.from_pretrained(model_path,cache_dir = huggingface_cache_dir)
     name = model_path.split("/")[-1]
 
     # Get the model's state_dict and selected_tokens

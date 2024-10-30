@@ -1,7 +1,7 @@
 import torch
 from transformers import AutoModelForCausalLM
 def model_cosine_similarity(model1,model2path,huggingface_cache_dir):
-    model2 = AutoModelForCausalLM.from_pretrained(model2path, cache_dir=huggingface_cache_dir,local_files_only=True,trust_remote_code=True)
+    model2 = AutoModelForCausalLM.from_pretrained(model2path, cache_dir=huggingface_cache_dir,trust_remote_code=True)
     parameters1=list(model1.parameters())
     parameters2=list(model2.parameters())
     dot_list = []
@@ -22,7 +22,7 @@ def model_cosine_similarity(model1,model2path,huggingface_cache_dir):
 if __name__ == '__main__':
     llamapath = 'decapoda-research/llama-7b-hf'
     huggingface_cache_dir = '/data1/byzeng/huggingface/hub'
-    llama = AutoModelForCausalLM.from_pretrained(llamapath, cache_dir=huggingface_cache_dir,local_files_only=True,trust_remote_code=True)
+    llama = AutoModelForCausalLM.from_pretrained(llamapath, cache_dir=huggingface_cache_dir,trust_remote_code=True)
     model2path = "minlik/chinese-alpaca-7b-merged"
     pathlist=[ 
          "TheBloke/Llama-2-7B-fp16","baichuan-inc/baichuan-7B",
