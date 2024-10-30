@@ -67,7 +67,7 @@ def get_invariant_terms2save(state_dict, name, selected_tokens):
             WvWo_list.append(WvWo)
             WuWd=x@(u.t()*d.t())@o_m.t()@x.t()
             WuWd_list.append(WuWd)
-    if name in ["gpt2-large","Cerebras-GPT-1.3B",'geogalactica']:
+    if name in ["gpt2-large","Cerebras-GPT-1.3B"]:
         dicts={}
         for key, value in state_dict.items():
             l = key.split(".")
@@ -176,7 +176,7 @@ def get_invariant_terms2save(state_dict, name, selected_tokens):
                 'chinese-alpaca-7b-merged', 'chinese-llama-7b-merged', 'beaver-7b-v1.0', 
                  'Llama-2-7b-chat-fp16', 'medalpaca-7b', 'koala-7b', 'alpaca-native', 
                 'vicuna-7b-v1.3', 'alpaca-lora-7b', 'baize-v2-7b', 'wizardLM-7B-HF', 'open_llama_7b',
-                  'MiniGPT-4-LLaMA-7B', 'LLaMA-2-7B-32K', 'llama-7b-hf','CodeLlama-7b-hf',
+                  'MiniGPT-4-LLaMA-7B', 'LLaMA-2-7B-32K', 'llama-7b-hf',
                 'Llama2-Chinese-7b-Chat','llama-2-ko-7b', 'Llama-2-7b-chat-hf-function-calling-v2',    
                 'Llama2-Chinese-13b-Chat','LLaMA2-13B-Tiefighter','Llama-2-13B-Chat-fp16',
     'Llama-2-13b-hf','Llama-2-13B-fp16-french','LLaMA2-13B-Estopia','Nous-Hermes-Llama2-13b',
@@ -305,7 +305,6 @@ def parse_args():
     return parser.parse_args() 
 if __name__ == "__main__":
    
-    # 
     args = parse_args()
     print(args)
     model_path = args.model_path
@@ -322,11 +321,11 @@ if __name__ == "__main__":
     num_tokens = 4096
     seed = 100
 
-    # 加载模型
+    # Load the model
     model = AutoModelForCausalLM.from_pretrained(model_path,cache_dir = huggingface_cache_dir,local_files_only=True)
     name = model_path.split("/")[-1]
 
-    # 获取模型的state_dict和selected_tokens
+    # Get the model's state_dict and selected_tokens
     state_dict = model.state_dict()
     sorted_tokens = []
     with open(sorted_tokens_path+name+'.txt', 'r') as file:
@@ -334,7 +333,7 @@ if __name__ == "__main__":
                 sorted_tokens.append(int(line.strip()))
     selected_tokens = sorted_tokens[-num_tokens:]
 
-    # extrct invariant terms from the model
+    # extract invariant terms from the model
     invariant_terms = get_invariant_terms2save(state_dict, name, selected_tokens)
     if args.feature_extract_methon == 'Mean_pooling':
     #mean pooling then generate fingerprint

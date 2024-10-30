@@ -65,7 +65,7 @@ if __name__ == '__main__':
                         cosine_matrix[i, j] = similarity
                         cosine_matrix[j, i] = similarity
 
-        # 创建DataFrame来存储余弦相似度
+        # # Create a DataFrame to store cosine similarity
         df = pd.DataFrame(cosine_matrix, columns=model_names, index=model_names)
         cosine_matrix = torch.from_numpy(cosine_matrix)
         lower_triangular = torch.tril(cosine_matrix)

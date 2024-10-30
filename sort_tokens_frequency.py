@@ -1,7 +1,6 @@
 import collections
 from tqdm import tqdm
 import concurrent.futures
-import light_hf_proxy
 from datasets import load_dataset
 from transformers import AutoTokenizer, LlamaTokenizer
 import os
@@ -9,10 +8,10 @@ import os
 def process_chunk(tokenizer,chunk):
     word_freq = collections.Counter()
     for item in chunk:
-        # 统计词频
+        # Count word frequency
         tokens = tokenizer.tokenize(item)
         token_ids = tokenizer.convert_tokens_to_ids(tokens)        
-        # 更新词频统计
+        # Update word frequency count
         word_freq.update(token_ids)
     return word_freq
 
@@ -42,7 +41,7 @@ def load_tokenizer(path):
             )
         except:
             try:
-                return tokenizer_class.from_pretrained(path, trust_remote_code=True,force_download=True)
+                return tokenizer_class.from_pretrained(path, trust_remote_code=True)
             except:
                 continue
     raise ValueError(f"Failed to load tokenizer from {path}")
@@ -67,6 +66,7 @@ def sort_tokens_frequency(path,savepath,datanum=400000,num_process=40):
 
 if os.path.exists("/home/byzeng/NIPS_Code/sorted_tokens")==False:
     os.mkdir("/home/byzeng/NIPS_Code/sorted_tokens")
+
 model_path="chainyo/alpaca-lora-7b"
 output_path="/home/byzeng/NIPS_Code/sorted_tokens/"
 sort_tokens_frequency(model_path,output_path)

@@ -40,7 +40,7 @@ Once everything is ready, generate the fingerprint using the following command:
 python main.py --model_path your_model_name_or_path --sorted_tokens_path your_sorted_token_list_path --invariant_terms_saved_path your_invariant_terms_folder_path --encoder_path your_encoder_path --feature_extract_method Mean_pooling_or_CNN
 ```
 
-You can choose either **Mean pooling** (a simpler method) or **CNN** for feature extraction. If you select Mean pooling, the encoder preparation step can be skipped.
+You can choose either **Mean pooling** (a simpler method) or **CNN** for feature extraction. If you select Mean pooling, the encoder preparation step can be skipped. We have listed the LLMs' Hugging Face repository paths in `models_hf_repo_path.txt`. You can choose one as your `your_model_name_or_path` to generate the fingerprint.
 
 ## Calculating Cosine Similarity
 
@@ -63,6 +63,11 @@ You can set the `--ics_calcu_models` argument to one of the following options to
 - **offspring_models** (Table 2)
 - **independent_models** (Table 7)
 
+**Note:** You need to first extract invariant terms for these models using code in `main.py` before calculating ICS.
+
+## Acknowledgements
+
+The code for the StyleGAN2 component in this project was adapted and modified from [pytorch-pretrained-gans](https://github.com/username/repository).
 ## Contact
 
 If you have any questions or encounter issues, feel free to [open an issue](#) or reach out to [Boyi Zeng](mailto:boyizeng@sjtu.edu.cn) at Shanghai Jiao Tong University.

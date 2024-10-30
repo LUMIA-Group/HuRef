@@ -23,22 +23,11 @@ if __name__ == '__main__':
     llamapath = 'decapoda-research/llama-7b-hf'
     huggingface_cache_dir = '/data1/byzeng/huggingface/hub'
     llama = AutoModelForCausalLM.from_pretrained(llamapath, cache_dir=huggingface_cache_dir,local_files_only=True,trust_remote_code=True)
-    # model2path = "minlik/chinese-alpaca-7b-merged"
-    # pathlist=[ 
-    #         # "TheBloke/Llama-2-7B-fp16","JosephusCheung/Guanaco","Neutralzz/BiLLa-7B-SFT",
-    #         # "internlm/internlm-7b","minlik/chinese-alpaca-7b-merged",
-    #         # "/data1/byzeng/huggingface/hub/models--minlik--chinese-llama-7b-merged/snapshots/1ca4d87576f1fef4d44a949fb65bbe6b96675872",
-    #         # 'PKU-Alignment/beaver-7b-v1.0',
-    #         # "baichuan-inc/baichuan-7B",
-    #         # "medalpaca/medalpaca-7b",
-    #         "samwit/koala-7b","chavinlo/alpaca-native","lmsys/vicuna-7b-v1.3","chainyo/alpaca-lora-7b","project-baize/baize-v2-7b",
-    #         "TheBloke/wizardLM-7B-HF","openlm-research/open_llama_7b","wangrongsheng/MiniGPT-4-LLaMA-7B"]
+    model2path = "minlik/chinese-alpaca-7b-merged"
     pathlist=[ 
-        #  "TheBloke/Llama-2-7B-fp16",
-        # "internlm/internlm-7b","minlik/chinese-alpaca-7b-merged",
-        # "/data1/byzeng/huggingface/hub/models--minlik--chinese-llama-7b-merged/snapshots/1ca4d87576f1fef4d44a949fb65bbe6b96675872",
-        "baichuan-inc/baichuan-7B",
-        "medalpaca/medalpaca-7b",
+         "TheBloke/Llama-2-7B-fp16","baichuan-inc/baichuan-7B",
+        "internlm/internlm-7b","minlik/chinese-alpaca-7b-merged",
+        "minlik/chinese-llama-7b-merged","medalpaca/medalpaca-7b",
         "samwit/koala-7b","chavinlo/alpaca-native","lmsys/vicuna-7b-v1.3","chainyo/alpaca-lora-7b","project-baize/baize-v2-7b",
         "TheBloke/wizardLM-7B-HF","openlm-research/open_llama_7b","wangrongsheng/MiniGPT-4-LLaMA-7B"]
     for model2path in pathlist:

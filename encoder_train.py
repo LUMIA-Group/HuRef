@@ -12,6 +12,7 @@ def seed_everything(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     print(f"Global seed set to {seed}")
+
 # Define encoder network
 class CNNEncoder(nn.Module):
     def __init__(self,k=48):
