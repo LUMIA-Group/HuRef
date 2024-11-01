@@ -79,10 +79,9 @@ If you find this work useful, please consider citing our paper:
 ```bibtex
 @article{zeng2023huref,
   title={HuRef: HUman-REadable Fingerprint for Large Language Models},
-  author={Zeng, Boyi and Zhou, Chenghu and Wang, Xinbing and Lin, Zhouhan},
+  author={Boyi Zeng and Lizheng Wang and Yuncong Hu and Yi Xu and Chenghu Zhou and Xinbing Wang and Yu Yu and Zhouhan Lin},
   journal={arXiv preprint arXiv:2312.04828},
   year={2023}
 }
 ```
-
 .
