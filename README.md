@@ -77,11 +77,11 @@ If you have any questions or encounter issues, feel free to [open an issue](#) o
 If you find this work useful, please consider citing our paper:
 
 ```bibtex
-@article{zeng2023huref,
-  title={HuRef: HUman-REadable Fingerprint for Large Language Models},
-  author={Boyi Zeng and Lizheng Wang and Yuncong Hu and Yi Xu and Chenghu Zhou and Xinbing Wang and Yu Yu and Zhouhan Lin},
-  journal={arXiv preprint arXiv:2312.04828},
-  year={2023}
+@inproceedings{zeng2023huref,
+  title={Huref: Human-readable fingerprint for large language models},
+  author={Zeng, Boyi and Wang, Lizheng and Hu, Yuncong and Xu, Yi and Zhou, Chenghu and Wang, Xinbing and Yu, Yu and Lin, Zhouhan},
+  booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems}
 }
 ```
+
 .
