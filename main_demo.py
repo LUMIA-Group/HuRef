@@ -294,7 +294,7 @@ def parse_args():
     parser.add_argument('--model_path', type=str, default="decapoda-research/llama-7b-hf", help='model path or model name to generate fingerprint')
     parser.add_argument('--huggingface_cache_dir', type=str, default="/data1/byzeng/huggingface/hub", help='your huggingface cache dir')
     parser.add_argument('--sorted_tokens_path', type=str, default="/home/byzeng/project/ICLRcode/toptokenstest/", help='the filefold path of sorted tokens')
-    parser.add_argument('--invariant_terms_saved_path', type=str, default="/home/byzeng/NIPS_Code/invariant_terms/", help='the filefold path to save invariant terms')
+    parser.add_argument('--invariant_terms_saved_path', type=str, default="/home/byzeng/HuRef/invariant_terms/inputweightsxxnew/", help='the filefold path to save invariant terms')
     parser.add_argument('--fingerprint_saved_path', type=str, default="/home/byzeng/NIPS_Code/fingerprints/", help='the filefold path to save fingerprints')
     parser.add_argument('--encoder_path', type=str, default="/data1/byzeng/goodencodersnew/encoder_n0.4_k48_p1.3_lr0.0001_16_21_10.pth", help='the path of encoder')
     parser.add_argument('--feature_extract_method', choices=['Mean_pooling', 'CNN'],default='CNN', help='the method to extract feature vector')
@@ -318,19 +318,20 @@ if __name__ == "__main__":
     seed = 100
 
     # Load the model
-    model = AutoModelForCausalLM.from_pretrained(model_path,cache_dir = huggingface_cache_dir)
+    # model = AutoModelForCausalLM.from_pretrained(model_path,cache_dir = huggingface_cache_dir)
     name = model_path.split("/")[-1]
 
     # Get the model's state_dict and selected_tokens
-    state_dict = model.state_dict()
-    sorted_tokens = []
-    with open(sorted_tokens_path+name+'.txt', 'r') as file:
-            for line in file:
-                sorted_tokens.append(int(line.strip()))
-    selected_tokens = sorted_tokens[-num_tokens:]
+    # state_dict = model.state_dict()
+    # sorted_tokens = []
+    # with open(sorted_tokens_path+name+'.txt', 'r') as file:
+    #         for line in file:
+    #             sorted_tokens.append(int(line.strip()))
+    # selected_tokens = sorted_tokens[-num_tokens:]
 
-    # extract invariant terms from the model
-    invariant_terms = get_invariant_terms2save(state_dict, name, selected_tokens)
+    # # extract invariant terms from the model
+    # invariant_terms = get_invariant_terms2save(state_dict, name, selected_tokens)    
+    invariant_terms = torch.tensor(np.load(invariant_terms_saved_path+f'{str(name)}.npy'))
     if args.feature_extract_method == 'Mean_pooling':
     #mean pooling then generate fingerprint
         feature_vector=mean_pooling(invariant_terms).cuda()
@@ -342,3 +343,5 @@ if __name__ == "__main__":
     generate_model_images(feature_vector,fingerprint_saved_path + name,seed=seed)
     print(f"Model {name} fingerprint generated successfully!")
 
+
+# python main.py --model_path decapoda-research/llama-7b-hf  --feature_extract_method Mean_pooling
